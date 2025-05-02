@@ -5,38 +5,53 @@ var router = express.Router();
 const localStrategy = require('passport-local');
 passport.use(new localStrategy(userModel.authenticate()));
 
-// users/create
-router.post('/create', async function (req, res, next) {
-  const user = await userModel.create({
-    userName: 'dp_2073',
-    fullName: 'Darshan',
-    email: 'n24@example.com',
-    password: '123456'
-  })
-  res.send({ 'newUser': user });
+// users/login
+router.get('/register', function (req, res) {
+  res.render('register');
 });
+
+// users/create
+// router.post('/create', async function (req, res, next) {
+//   const user = await userModel.create({
+//     username: 'dp_2073',
+//     fullName: 'Darshan',
+//     email: 'n24@example.com',
+//     password: '123456'
+//   })
+//   res.send({ 'newUser': user });
+// });
 
 // users/allposts
-router.get('/allposts', async function (req, res, next) {
-  const users = await userModel.findOne({ _id: '68134c4b1ec98056cf4c6785' }).populate('posts');
-  res.send({ 'users': users });
-});
+// router.get('/allposts', async function (req, res, next) {
+//   const users = await userModel.findOne({ _id: '68134c4b1ec98056cf4c6785' }).populate('posts');
+//   res.send({ 'users': users });
+// });
 
 // users/register
-router.post('/register', function (req, res) {
-  const { userName, email, fullName } = req.body;
-  const userData = new userModel({ userName, email, fullName })
-  // console.log(userData);
+router.post('/register', async function (req, res) {
+  try {
+    console.log("Request body", req.body);
+    const { username, email, fullName } = req.body;
+    if (!username) {
+      return res.status(400).send('username is required');
+    }
 
-  // register user
-  userModel.register(userData, req.body.password).
-    then(function () {
-      passport.authenticate('local')(req, res, function () {
-        res.redirect('/users/profile');
-      })
-    })
-  res.send({ 'newUser': newUser });
+    const userData = new userModel({ username, email, fullName });
+    console.log("userdata", userData);
+    // Register the user
+    await userModel.register(userData, req.body.password);
+
+    // Authenticate and login the user
+    passport.authenticate('local')(req, res, function () {
+      res.redirect('/users/profile');
+    });
+
+  } catch (error) {
+    console.error('Registration error:', error);
+    res.status(500).send('Registration failed: ' + error.message);
+  }
 });
+
 
 // users/login
 router.post('/login', passport.authenticate('local', { successRedirect: '/users/profile', failureRedirect: '/users/login' }), function (req, res) {

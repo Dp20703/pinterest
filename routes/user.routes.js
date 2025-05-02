@@ -5,9 +5,13 @@ var router = express.Router();
 const localStrategy = require('passport-local');
 passport.use(new localStrategy(userModel.authenticate()));
 
-// users/login
+// users/register
 router.get('/register', function (req, res) {
   res.render('register');
+});
+// users/login
+router.get('/login', function (req, res) {
+  res.render('login');
 });
 
 // users/create

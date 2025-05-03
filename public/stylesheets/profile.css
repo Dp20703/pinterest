@@ -8,6 +8,18 @@ body {
     margin: auto;
     overflow: hidden;
   }
+
+  .info {
+    box-shadow: 0px 5px 13px rgba(0, 0, 0, 0.6);
+    border:0.5px solid gray;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 13px;
+    border-radius: 10px;
+    line-height: .5em;
+  }
  .logout{
     float: right;
     position: relative;
@@ -28,17 +40,6 @@ body {
         background-color: #c51616;
     }
  } 
-  .info {
-    box-shadow: 0px 5px 13px rgba(0, 0, 0, 0.6);
-    border:0.5px solid gray;
-    padding: 10px;
-    margin: auto;
-    text-align: center;
-    font-size: 13px;
-    border-radius: 10px;
-    line-height: .5em;
-  }
-
   .info img {
     border: 2px solid black;
     border-radius: 50%;

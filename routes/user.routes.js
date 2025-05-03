@@ -20,7 +20,7 @@ router.get('/login', function (req, res) {
 
 // users/feed
 router.get('/feed', async function (req, res) {
-  const posts = await postModel.find();
+  const posts = await postModel.find().sort({ createdAt: -1 });
   console.log("Posts:", posts);
   res.render('feed', { posts: posts });
 });

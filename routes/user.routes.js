@@ -3,6 +3,7 @@ const userModel = require('../models/user.model');
 const passport = require('passport');
 var router = express.Router();
 const localStrategy = require('passport-local');
+const { render } = require('ejs');
 passport.use(new localStrategy(userModel.authenticate()));
 
 // users/register
@@ -12,6 +13,11 @@ router.get('/register', function (req, res) {
 // users/login
 router.get('/login', function (req, res) {
   res.render('login');
+});
+
+// users/feed
+router.get('/feed', function (req, res) {
+  res.render('feed');
 });
 
 // users/create

@@ -42,14 +42,16 @@
             <div class="cards">
                 <% user.posts.forEach((post)=>{%>
                     <div class="card" style="width: 18rem;">
-                        <a href="http://localhost:4000/images/uploads/<%= post.imageUrl %>">
+                        <!-- <a href="http://localhost:4000/images/uploads/<%= post.imageUrl %>"> -->
+                        <a
+                            href="<%= process.env.BACKEND_URL || 'http://localhost:4000' %>/images/uploads/<%= post.imageUrl %>">
                             <img src="/images/uploads/<%= post.imageUrl %>" class="card-img-top" alt="...">
                         </a>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <%= post.postText %>
-                                </h5>
-                            </div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= post.postText %>
+                            </h5>
+                        </div>
                     </div>
                     <% }) %>
             </div>

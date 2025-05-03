@@ -19,8 +19,10 @@ router.get('/login', function (req, res) {
 });
 
 // users/feed
-router.get('/feed', function (req, res) {
-  res.render('feed');
+router.get('/feed', async function (req, res) {
+  const posts = await postModel.find();
+  console.log("Posts:", posts);
+  res.render('feed', { posts: posts });
 });
 
 // users/profile

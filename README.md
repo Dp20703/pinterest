@@ -109,10 +109,10 @@ pinterest-clone/
 
 ## 📸 Screenshots
 
-![Login Page](login.png)
-![Registration Page](registration.png)
-![User Profile Page](profile.png)
-![Post Feed Page](post_feed.png)
+![Login Page](public/images/screenshot/login.png)
+![Registration Page](public/images/screenshot/registration.png)
+![User Profile Page](public/images/screenshot/profile.png)
+![Post Feed Page](public/images/screenshot/post_feed.png)
 
 ---
 

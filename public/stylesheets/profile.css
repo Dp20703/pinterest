@@ -3,22 +3,22 @@ body {
     padding: 0;
     font-family: 'Poppins Light';
   }
-  .containerP{
+  .section{
     max-width: 80%;
     margin: auto;
     overflow: hidden;
   }
- .info{
-    position: absolute;
-    top: 30px;
-    right: 40px;
+ .logout{
+    float: right;
+    position: relative;
+    top: 0;
+    right: 5px;
     background-color: #e71b22;
     color: white;
     border-radius: 15px;
-    padding: 10px 15px;
+    padding: 18px 16px;
     box-shadow: 0px 5px 13px rgba(0, 0, 0, 0.6);
     transition: all 0.3s ease;
-
     a {
         text-decoration: none;
         color: white;
@@ -28,7 +28,7 @@ body {
         background-color: #c51616;
     }
  } 
-  .cardP {
+  .info {
     box-shadow: 0px 5px 13px rgba(0, 0, 0, 0.6);
     border:0.5px solid gray;
     padding: 10px;
@@ -39,7 +39,7 @@ body {
     line-height: .5em;
   }
 
-  .cardP img {
+  .info img {
     border: 2px solid black;
     border-radius: 50%;
     &:hover{

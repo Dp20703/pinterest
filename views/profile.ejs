@@ -12,20 +12,21 @@
 </head>
 
 <body>
-    <div class="containerP">
-        <div class="mb-4">
-            <div class="info">
+    <div class="section">
+        <div class="info mb-4">
+            <div class="logout">
                 <a href="/users/logout">Logout</a>
             </div>
-            <div class="cardP">
-                <img src="https://i.pravatar.cc/150?img=10" alt="image" />
-                <h3>@priyapatel</h3>
-                <p class="fs-6">Priya patel</p>
-                <p>Trader</p>
-                <p>email: kp@gmail.com</p>
-            </div>
+            <img src="https://i.pravatar.cc/150?img=2" alt="image" />
+            <h3 class="fs-4">
+                <%= user.fullName %>
+            </h3>
+            <p class="fs-6">@<%= user.username %>
+            </p>
+            <p class="fs-6">
+                <%= user.email %>
+            </p>
         </div>
-
         <div class="container">
             <div class="card" style="width: 18rem;">
                 <img src="https://picsum.photos/id/<%= Math.floor(Math.random() * 1000) %>/150/150" class="card-img-top"

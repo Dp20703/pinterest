@@ -13,7 +13,7 @@ router.get('/register', function (req, res) {
 });
 // users/login
 router.get('/login', function (req, res) {
-  res.render('login');
+  res.render('login', { error: req.flash('error') });
 });
 
 // users/feed
@@ -74,8 +74,14 @@ router.post('/register', async function (req, res) {
 
 
 // users/login
-router.post('/login', passport.authenticate('local', { successRedirect: '/users/profile', failureRedirect: '/users/login' }), function (req, res) {
-});
+router.post('/login', passport.authenticate('local',
+  {
+    successRedirect: '/users/profile',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  }),
+  function (req, res) {
+  });
 
 // users/logout
 router.get('/logout', function (req, res, next) {

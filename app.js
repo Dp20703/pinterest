@@ -8,6 +8,7 @@ dotenv.config();
 const dbConnect = require('./config/db.connect');
 dbConnect();
 const session = require("express-session");
+const flash=require('connect-flash')
 
 var postsRouter = require('./routes/post.route');
 var usersRouter = require('./routes/user.routes');
@@ -20,6 +21,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(flash());
 app.use(session({
   secret: 'keyboard cat',
   resave: false,

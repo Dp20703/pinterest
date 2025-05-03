@@ -3,8 +3,9 @@ const userModel = require('../models/user.model');
 const passport = require('passport');
 var router = express.Router();
 const localStrategy = require('passport-local');
-const { render } = require('ejs');
 passport.use(new localStrategy(userModel.authenticate()));
+
+// -----------------------------Frontend routes--------------------------------------------
 
 // users/register
 router.get('/register', function (req, res) {
@@ -19,6 +20,15 @@ router.get('/login', function (req, res) {
 router.get('/feed', function (req, res) {
   res.render('feed');
 });
+
+// users/profile
+router.get("/profile", isLoggedIn, function (req, res) {
+  res.render("profile");
+});
+
+
+
+// -----------------------------Backend routes---------------------------------------------
 
 // users/create
 // router.post('/create', async function (req, res, next) {
@@ -75,16 +85,16 @@ router.get('/logout', function (req, res, next) {
   });
 });
 
-// users/profile
-router.get('/profile', isLoggedIn, function (req, res) {
-  res.send("Profile page");
-});
+// // users/profile
+// router.get('/profile', isLoggedIn, function (req, res) {
+//   res.send("Profile page");
+// });
 
 // isLoggedIn
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/');
+  res.redirect('/users/login');
 }
 module.exports = router;

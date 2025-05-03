@@ -17,23 +17,39 @@
             <div class="logout">
                 <a href="/users/logout">Logout</a>
             </div>
-            <img src="https://i.pravatar.cc/150?img=2" alt="image" />
-            <h3 class="fs-4">
-                <%= user.fullName %>
-            </h3>
-            <p class="fs-6">@<%= user.username %>
-            </p>
-            <p class="fs-6">
-                <%= user.email %>
-            </p>
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <img src="https://i.pravatar.cc/150?img=2" alt="image" />
+                <p class="fs-4 mt-3">
+                    <%= user.fullName %>
+                </p>
+                <p class="fs-6">@<%= user.username %>
+                </p>
+                <p class="fs-6">
+                    <%= user.email %>
+                </p>
+            </div>
+            <div class="upload">
+                <form action="/users/upload" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="text" name="postText" class="form-control mb-2" placeholder="enter caption" />
+                        <input type="file" name="file" class="form-control mb-2" />
+                        <button class="px-2 py-2 btn btn-primary" type="submit">Upload</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="container">
-            <div class="card" style="width: 18rem;">
-                <img src="https://picsum.photos/id/<%= Math.floor(Math.random() * 1000) %>/150/150" class="card-img-top"
-                    alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">All Designs</h5>
-                </div>
+            <div class="cards">
+                <% user.posts.forEach((post)=>{%>
+                    <div class="card" style="width: 18rem;">
+                        <img src="/images/uploads/<%= post.imageUrl %>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= post.postText %>
+                            </h5>
+                        </div>
+                    </div>
+                    <% }) %>
             </div>
         </div>
     </div>
